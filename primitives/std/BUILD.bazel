@@ -1,0 +1,92 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary")
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "k0s_rs",
+    srcs = ["src/main.rs"],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cargo:rand",
+        "//cargo:serde",
+        "//cargo:serde_json",
+    ],
+)
+
+rust_binary(
+    name = "hub_rs",
+    srcs = ["src/hub.rs"],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cargo:actix",
+        "//cargo:actix_http",
+        "//cargo:actix_rt",
+        "//cargo:actix_web",
+        "//cargo:actix_web_actors",
+        "//cargo:bytes",
+        "//cargo:log",
+        "//cargo:serde",
+        "//cargo:serde_json",
+        "//cargo:simple_logger",
+    ],
+)
+
+rust_binary(
+    name = "k8s-controller",
+    srcs = ["src/k8s-controller.rs"],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cargo:serde",
+        "//cargo:serde_json",
+        # "//cargo:serde_derive",
+        "//cargo:kube",
+        "//cargo:kube_runtime",
+        # "//cargo:kube-derive",
+        "//cargo:k8s_openapi",
+        "//cargo:schemars",
+        "//cargo:tokio",
+        "//cargo:futures",
+    ],
+)
+
+rust_binary(
+    name = "node-template",
+    srcs = [
+	"src/chain_spec.rs",
+	"src/cli.rs",
+	"src/command.rs",
+	"src/command_helper.rs",
+	"src/main.rs",
+	"src/rpc.rs",
+	"src/service.rs",
+    ],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        # "//cargo:serde",
+        # "//cargo:serde_json",
+        # "//cargo:serde_derive",
+        # "//cargo:kube",
+        # "//cargo:kube_runtime",
+        # "//cargo:kube-derive",
+        # "//cargo:k8s_openapi",
+        # "//cargo:schemars",
+        # "//cargo:tokio",
+        # "//cargo:futures",
+    ],
+)
+
+rust_library(
+    name = "std",
+    srcs = [
+        "with_std.rs",
+        "without_std.rs",
+        "src/lib.rs"
+    ],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [],
+)
+
