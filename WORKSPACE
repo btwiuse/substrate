@@ -32,3 +32,20 @@ load("@cargo_raze//:transitive_deps.bzl", "cargo_raze_transitive_deps")
 
 cargo_raze_transitive_deps()
 
+# http://bazelbuild.github.io/rules_rust/crate_universe.html
+
+load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+
+crate_universe_dependencies()
+
+load("@rules_rust//crate_universe:defs.bzl", "crates_repository")
+
+crates_repository(
+    name = "crate_index",
+    lockfile = "//:Cargo.Bazel.lock",
+    manifests = ["//:Cargo.toml"],
+)
+
+load("@crate_index//:defs.bzl", "crate_repositories")
+
+crate_repositories()

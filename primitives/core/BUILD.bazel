@@ -1,0 +1,33 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+alias(
+    name = "sp_std",
+    actual = "//primitives/std",
+    tags = [],
+)
+
+rust_library(
+    name = "core",
+    srcs = [
+        "src/crypto.rs",
+        "src/ecdsa.rs",
+        "src/ed25519.rs",
+        "src/hash.rs",
+        "src/hasher.rs",
+        "src/hashing.rs",
+        "src/hexdisplay.rs",
+        "src/lib.rs",
+        "src/sr25519.rs",
+        "src/testing.rs",
+        "src/traits.rs",
+        "src/uint.rs",
+        "src/offchain/mod.rs",
+        "src/offchain/storage.rs",
+        "src/offchain/testing.rs",
+    ],
+    edition = "2021",
+    visibility = ["//visibility:public"],
+    deps = [
+        "sp_std",
+    ],
+)
