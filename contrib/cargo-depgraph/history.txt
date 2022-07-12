@@ -1,0 +1,1 @@
+cat lines | while read a b c d; do ([[ $a -ge 235 ]] || [[ $c -ge 235 ]]) || echo "$a -> $c $d"; done > boxlines

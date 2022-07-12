@@ -25,3 +25,5 @@ rls*.log
 *.bin
 *.iml
 scripts/ci/node-template-release/Cargo.lock
+cargo
+/bazel-*
