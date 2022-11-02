@@ -14,7 +14,7 @@ readme = "README.md"
 targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
-ahash = "0.7.6"
+ahash = "0.8.1"
 async-trait = "0.1.50"
 dyn-clone = "1.0"
 finality-grandpa = { version = "0.16.0", features = ["derive-codec"] }
